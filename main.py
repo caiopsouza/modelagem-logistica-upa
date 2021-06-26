@@ -1,6 +1,5 @@
-import sys
 from itertools import product
-from pulp import LpVariable, const, LpProblem, LpMinimize, lpSum, LpStatus
+from pulp import LpVariable, const, LpProblem, LpMinimize, lpSum
 
 
 def dist_squared(a: (int, int), b: (int, int)) -> int:
@@ -8,7 +7,7 @@ def dist_squared(a: (int, int), b: (int, int)) -> int:
 
 
 def upa(distritos: [int, int], dist_max_distrito_upa: [int], dist_min_entre_upas: int):
-    dist_max_distrito_upa = sorted(dist_max_distrito_upa)
+    dist_max_distrito_upa.sort()
 
     # Lista de índices dos distritos
     range_distritos = list(range(0, len(distritos)))
@@ -21,10 +20,9 @@ def upa(distritos: [int, int], dist_max_distrito_upa: [int], dist_min_entre_upas
     problem += lpSum(variables.items())
 
     # Distância máxima entre um distrito e a próxima UPA
-    dist_max_distrito_upa_squared = [d * d for d in dist_max_distrito_upa]
     amount_required = 1
-    for dist_max_squared in dist_max_distrito_upa_squared:
-        print('params', amount_required, dist_max_squared)
+    for dist_max in dist_max_distrito_upa:
+        dist_max_squared = dist_max * dist_max
 
         for distrito in range_distritos:
             restricoes_distancia = []
@@ -36,7 +34,8 @@ def upa(distritos: [int, int], dist_max_distrito_upa: [int], dist_min_entre_upas
                 restricoes_distancia.append(variables[vizinho] * dentro_da_area)
 
             problem += lpSum(restricoes_distancia) >= amount_required
-            amount_required += 1
+
+        amount_required += 1
 
     # Distância mínima entre UPAs
     dist_min_entre_upas_squared = dist_min_entre_upas * dist_min_entre_upas
@@ -52,7 +51,6 @@ def upa(distritos: [int, int], dist_max_distrito_upa: [int], dist_min_entre_upas
     # Resolve
     print(problem)
     problem.solve()
-    print(LpStatus[problem.status])
 
 
 if __name__ == '__main__':
@@ -118,6 +116,6 @@ if __name__ == '__main__':
         (7, 40),
         (42, 2),
     ]
-    dist_max_distrito_upa = [10, 15]
+    dist_max_distrito_upa = [15, 20, 25]
     dist_min_entre_upas = 3
     upa(distritos_localidades, dist_max_distrito_upa, dist_min_entre_upas)
