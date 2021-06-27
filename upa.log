@@ -1,0 +1,13 @@
+UFFLP version 3.2.0 over 64 bit Coin-Cbc 2.10.0 developed by Artur Alves Pessoa and delivered by Gapso
+Clp0033I Presolve took 0.00 seconds (total 0.00)
+Clp1001I Initial range of elements is 1 to 1
+Clp1004I Not bothering to scale as good enough
+Clp0022I Absolute values of scaled rhs range from 1 to 3, minimum gap 1e+100
+Clp0020I Absolute values of scaled objective range from 1 to 1
+Clp0021I Absolute values of scaled bounds range from 1 to 1, minimum gap 1
+Clp0006I 0  Obj 11 Primal inf 195.99989 (115)
+Clp0006I 26  Obj 26
+Clp0000I Optimal - objective value 26
+Clp0033I Dual took 0.00 seconds (total 0.00)
+Clp0033I Postsolve took 0.00 seconds (total 0.00)
+Clp0032I Optimal objective 26 - 26 iterations time 0.002, Presolve 0.00
