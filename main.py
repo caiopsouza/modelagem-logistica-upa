@@ -116,6 +116,6 @@ if __name__ == '__main__':
         (7, 40),
         (42, 2),
     ]
-    dist_max_distrito_upa = [15, 20, 25]
+    dist_max_distrito_upa = [15, 20 ,25]
     dist_min_entre_upas = 3
     upa(distritos_localidades, dist_max_distrito_upa, dist_min_entre_upas)
